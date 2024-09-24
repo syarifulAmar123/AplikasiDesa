@@ -13,11 +13,11 @@ const HalamanAwal = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#535c68',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={'#535c68'} barStyle={'dark-content'} />
       <Image
         source={require('../../assets/Sisambi.png')}
         style={{height: 200, width: 200, marginBottom: 20}}

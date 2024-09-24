@@ -8,6 +8,7 @@ import {
   Alert,
   Image,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {withSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -21,7 +22,7 @@ const HalamanKedua = () => {
   const handlerHidden = () => {
     setIsTrue(!isTrue);
   };
-
+  // console.log(handlerTutup);
   const handlerTutup = () => {
     setTutup(!tutup);
   };
@@ -43,7 +44,7 @@ const HalamanKedua = () => {
           Alert.alert('Anda berhasil login');
           setTimeout(() => {
             navigation.navigate('DetailKedua');
-          });
+          }, 4000);
           setPassword('');
           setUsername('');
         } else {
@@ -56,7 +57,8 @@ const HalamanKedua = () => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: '#535c68'}}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'#535c68'} />
       <View style={{padding: 20, margin: 10, marginTop: 130}}>
         <Image
           source={require('../../assets/Sisambi.png')}
@@ -117,14 +119,18 @@ const HalamanKedua = () => {
           />
           <TouchableOpacity
             onPress={() => handlerTutup()}
-            style={{position: 'absolute'}}>
+            style={{position: 'absolute', marginLeft: 200}}>
             <Image
-              source={require('../../assets/eye.png')}
+              source={
+                tutup == true
+                  ? require('../../assets/eye.png')
+                  : require('../../assets/hidden.png')
+              }
               style={{
                 width: 20,
                 height: 20,
                 marginTop: 12,
-                marginLeft: 300,
+                marginLeft: 100,
               }}
             />
           </TouchableOpacity>
@@ -134,12 +140,25 @@ const HalamanKedua = () => {
             style={{
               width: 18,
               height: 18,
-              backgroundColor: isTrue == true ? '#888888' : 'white',
+              backgroundColor: 'white',
               borderWidth: 1 / 2,
               borderRadius: 3,
               marginHorizontal: 10,
+              justifyContent: 'center',
+              alignContent: 'center',
             }}
-            onPress={() => handlerHidden()}></TouchableOpacity>
+            onPress={() => handlerHidden()}>
+            <View>
+              {isTrue ? (
+                <Image
+                  source={require('../../assets/check.png')}
+                  style={{width: 16, height: 16}}
+                />
+              ) : (
+                <View style={{width: 18, height: 18}}></View>
+              )}
+            </View>
+          </TouchableOpacity>
           <Text style={{color: 'black', fontFamily: 'Roboto-Regular'}}>
             Ingatkan saya
           </Text>
